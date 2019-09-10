@@ -1,10 +1,35 @@
 {{ define "main" }}
-	<main>
-		{{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
-		{{ range $paginator.Pages }}
-			{{ .Render "summary" }}
-		{{ end }}
-		{{ partial "pagination.html" . }}
-	</main>
-{{ partial "sidebar.html" . }}
+    <main aria-role="main">
+		<div class="homepage-content">
+            <div class="main-page-banner">
+                <div class="main-page-picture">
+                    {{ $images := .Resources.ByType "image" }}
+                    {{ $original := index $images 0 }}
+                    {{ $scaled := $original.Resize "600x q60"}}
+                    {{ with $scaled }}
+                    <img src="{{ .RelPermalink }}">
+                    {{ end }}
+                </div>
+                <div class="main-page-social">
+                    <ul class="social-list">
+                        <li><a href="mailto:{{.Site.Params.email}}">
+                            <img src="images/mail.svg" height="24" width="24">
+                        </a></li>
+                        <li><a href="{{ .Site.Params.github }}">
+                            <img src="images/github.svg" height="24" width="24">
+                        </a></li>
+                        <li><a href="{{ .Site.Params.linkedin }}">
+                            <img src="images/linkedin.svg" height="24" width="24">
+                        </a></li>
+                        <li><a href="{{ .Site.Params.resume }}">
+                            [resume]
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+		<!-- Note that the content for index.html, as a sort of list page, will pull from content/_index.md -->
+		{{.Content}}
+		</div>
+        <hr>
+    </main>
 {{ end }}

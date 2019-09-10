@@ -1,22 +1,27 @@
 {{ define "main" }}
 	<main>
 		<article>
-			<h1>{{ .Title }}</h1>
-			<time>{{ .Date.Format "02.01.2006 15:04" }}</time>
+			<h1>
+				<a href="{{.Parent.Permalink}}">{{ .Type }}</a> / {{ .Title }}
+			</h1>
+			{{ if .Params.homepage }}
+			<a class="button" href="{{ .Params.github }}"> Homepage </a>
+			{{ end }}
+			{{ if .Params.github }}
+			<a class="button" href="{{ .Params.github }}"> Code </a>
+			{{ end }}
+			{{ if .Params.paper }}
+			<a class="button" href="{{ .Params.github }}"> Paper </a>
+			{{ end }}
+
+			<hr>
 			<div>
 				{{ .Content }}
 			</div>
 			<div>
-				<ul id="tags">
-					{{ range .Params.tags }}
-					<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
-					{{ end }}
-				</ul>
-			</div>
-			<div>
 				{{ template "_internal/disqus.html" . }}
 			</div>
+			<hr>
 		</article>
 	</main>
-{{ partial "sidebar.html" . }}
 {{ end }}
