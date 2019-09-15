@@ -26,6 +26,9 @@ For more information read the official [quick start guide](https://gohugo.io/get
 
 Have you found a bug or got an idea for a new feature? Feel free to use the [issue tracker](https://github.com/Vimux/blank/issues) to let me know. Or make directly a [pull request](https://github.com/Vimux/blank/pulls).
 
+## Icons
+https://feathericons.com
+
 ## License
 
 This theme is released under the [MIT license](https://github.com/Vimux/blank/blob/master/LICENSE).
